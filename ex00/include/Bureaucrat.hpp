@@ -15,6 +15,9 @@ class Bureaucrat {
   Bureaucrat();
 
  public:
+  static const size_t HIGHEST_GRADE = 1;
+  static const size_t LOWEST_GRADE = 150;
+
   // Constructors
   Bureaucrat(const Bureaucrat& copy);
   Bureaucrat(const string name, size_t grade);
@@ -30,15 +33,15 @@ class Bureaucrat {
   size_t getGrade() const;
 
   // Methods
-  void increaseGrade();
-  void decreaseGrade();
+  void increaseGrade(int amount);
+  void decreaseGrade(int amount);
 
   // Exceptions
   class GradeTooHighException;
   class GradeTooLowException;
 };
 
-class GradeTooHighException : public std::exception {
+class Bureaucrat::GradeTooHighException : public std::exception {
  public:
   virtual const char* what() const throw();
 };
