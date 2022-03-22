@@ -1,6 +1,6 @@
 NAME := prog.out
 CXX  := c++
-CPPFLAGS := -g -Wall -Wextra -Werror -std=c++98 -Iinclude/
+CXXFLAGS := -g -Wall -Wextra -Werror -std=c++98 -Iinclude/
 
 SRC := $(wildcard src/*.cpp)
 OBJ := $(SRC:%.cpp=%.o)
@@ -8,7 +8,7 @@ OBJ := $(SRC:%.cpp=%.o)
 .PHONY: run re clean
 
 $(NAME): $(OBJ)
-	$(CXX) $(CPPFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 all: $(NAME)
 re: clean all
