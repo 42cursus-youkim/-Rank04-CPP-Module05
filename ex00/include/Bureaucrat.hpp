@@ -15,8 +15,7 @@ class Bureaucrat {
   Bureaucrat();
 
  public:
-  static const size_t HIGHEST_GRADE = 1;
-  static const size_t LOWEST_GRADE = 150;
+  enum BereaucratGradeRange { HIGHEST_GRADE = 1, LOWEST_GRADE = 150 };
 
   // Constructors
   Bureaucrat(const Bureaucrat& copy);

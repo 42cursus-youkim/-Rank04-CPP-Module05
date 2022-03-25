@@ -1,53 +1,59 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "color.hpp"
 
 using std::cerr;
 using std::cout;
+using std::string;
+
+enum gradeActionType { INCREASE, DECREASE, NONE };
+
+struct gradeAction {
+  gradeActionType type;
+  int amount;
+};
+
+void testGradeAction(Bureaucrat& testPerson, gradeAction action) {
+  try {
+    cout << (action.type == INCREASE ? CYN "Increasing" : MAG "Decreasing")
+         << " grade of " << testPerson.getName() << " by " << action.amount
+         << ".\n" END;
+    if (action.type == INCREASE)
+      testPerson.increaseGrade(action.amount);
+    else if (action.type == DECREASE)
+      testPerson.decreaseGrade(action.amount);
+    cout << testPerson << std::endl;
+  } catch (std::exception& e) {
+    cerr << RED "[Exception On grading] " << e.what() << "\n" END;
+  }
+}
+
+void test(const string& header,
+          const string& name,
+          int initialGrade,
+          gradeAction action) {
+  cout << HYEL "[[Testing " << header << "]]\n" END;
+  try {
+    Bureaucrat testPerson(name + " person", initialGrade);
+    cout << testPerson << std::endl;
+    if (action.type != NONE)
+      testGradeAction(testPerson, action);
+  } catch (std::exception& e) {
+    cerr << RED "[Exception On Creation] " << e.what() << "\n" END;
+  }
+  cout << "\n";
+}
+
 int main() {
-  cout << "[[Testing Grade Increase]]\n";
-  try {
-    Bureaucrat successPerson("some person", 30);
-    cout << successPerson << std::endl;
-    successPerson.increaseGrade(10);
-    cout << successPerson << std::endl;
-  } catch (std::exception& e) {
-    cerr << e.what() << std::endl;
-  }
-  cout << "[[Testing Grade Decrease]]\n";
-  try {
-    Bureaucrat failPerson("some person", 120);
-    cout << failPerson << std::endl;
-    failPerson.decreaseGrade(10);
-    cout << failPerson << std::endl;
-  } catch (std::exception& e) {
-    cerr << e.what() << std::endl;
-  }
-  cout << "[[Testing Grade too high]]\n";
-  try {
-    Bureaucrat person("good grade person", 1);
-    cout << person << std::endl;
-    person.increaseGrade(1);
-  } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
-  try {
-    Bureaucrat person2("goodest grade person", 0);
-    cout << person2 << std::endl;
-  } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
-  cout << "[[Testing Grade too low]]\n";
-  try {
-    Bureaucrat person3("low grade person", 150);
-    cout << person3 << std::endl;
-    person3.decreaseGrade(1);
-  } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
-  try {
-    Bureaucrat person4("lowest grade person", 151);
-    cout << person4 << std::endl;
-  } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
+  test("Grade low", "Low", 100, (gradeAction){NONE, 0});
+  test("Grade too low", "wor?st grade", 150, (gradeAction){DECREASE, 10});
+  test("Grade Decrease too low", "bad grade", 120,
+       (gradeAction){DECREASE, 100});
+  test("Grade Decrease", "some", 120, (gradeAction){DECREASE, 15});
+
+  test("Grade high", "high", 1, (gradeAction){NONE, 0});
+  test("Grade too high", "great?est grade", -123, (gradeAction){NONE, 0});
+  test("Grade Increase", "some", 30, (gradeAction){INCREASE, 15});
+  test("Grade Increase too high", "good grade", 30,
+       (gradeAction){INCREASE, 100});
 }
