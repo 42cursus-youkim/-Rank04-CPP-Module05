@@ -12,16 +12,15 @@ class Bureaucrat {
   const string _name;
   size_t _grade;
 
+  // Disabled Constructor
   Bureaucrat();
 
  public:
   enum BereaucratGradeRange { HIGHEST_GRADE = 1, LOWEST_GRADE = 150 };
 
-  // Constructors
+  // Constructors & Destructor
+  Bureaucrat(const string& name, int grade);
   Bureaucrat(const Bureaucrat& copy);
-  Bureaucrat(const string name, size_t grade);
-
-  // Destructor
   ~Bureaucrat();
 
   // Operators
