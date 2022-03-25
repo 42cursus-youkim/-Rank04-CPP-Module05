@@ -16,7 +16,7 @@ class Bureaucrat {
   Bureaucrat();
 
  public:
-  enum BereaucratGradeRange { HIGHEST_GRADE = 1, LOWEST_GRADE = 150 };
+  enum BureaucratGradeRange { HIGHEST_GRADE = 1, LOWEST_GRADE = 150 };
 
   // Constructors & Destructor
   Bureaucrat(const string& name, int grade);
