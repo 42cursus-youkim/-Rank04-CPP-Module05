@@ -57,4 +57,8 @@ int main() {
   test("Grade too high", "b?est grade", -123, (gradeAction){NONE, 0});
   test("Grade Increase too high", "good grade", 30,
        (gradeAction){INCREASE, 100});
+
+  Bureaucrat testPerson("testPerson", 1);
+  cout << YEL "grade of " << testPerson.getName() << " is "
+       << testPerson.getGrade() << "/" << Bureaucrat::LOWEST_GRADE << "\n" END;
 }
