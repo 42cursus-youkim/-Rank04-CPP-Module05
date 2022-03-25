@@ -1,4 +1,6 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include "color.hpp"
 
 // Constructors
 Bureaucrat::Bureaucrat(const string& name, int grade)
@@ -42,6 +44,18 @@ void Bureaucrat::decreaseGrade(size_t amount) {
   if (_grade + amount > LOWEST_GRADE)
     throw Bureaucrat::GradeTooLowException();
   _grade += amount;
+}
+
+bool Bureaucrat::signForm(Form& form) {
+  try {
+    form.beSigned(*this);
+    std::cout << CYN << getName() << " signed " << form.getName();
+  } catch (const std::exception& e) {
+    std::cout << HRED << getName() << " couldn't sign " CYN << form.getName()
+              << HRED " because: " << e.what();
+  }
+  std::cout << "\n" END;
+  return form.getIsSigned();
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {

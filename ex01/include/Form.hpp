@@ -2,15 +2,16 @@
 #define __FORM_H__
 
 #include <string>
-#include "Bureaucrat.hpp"
 
 using std::string;
+
+class Bureaucrat;
 
 class Form {
  private:
   const string _name;
-  const int _signRequiredGrade;
-  const int _executionRequiredGrade;
+  const size_t _executionRequiredGrade;
+  const size_t _signRequiredGrade;
   bool _isSigned;
 
   // Disabled Constructor
@@ -23,7 +24,7 @@ class Form {
  public:
   enum FormGradeRange { HIGHEST_GRADE = 1, LOWEST_GRADE = 150 };
   // Constructors & Destructor
-  Form(const string& name, int signGrade, int execGrade);
+  Form(const string& name, int execGrade, int signGrade);
   Form(const Form& other);
   virtual ~Form();
 

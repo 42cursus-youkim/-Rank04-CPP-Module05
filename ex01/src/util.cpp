@@ -3,11 +3,17 @@
 #include "color.hpp"
 
 // helper function
-string colorBool(bool b) {
-  return string(b ? GRN "true" : RED "false") + END;
+string colorBool(bool b, string trueValue, string falseValue) {
+  return string(b ? BHGRN : BHRED) + (b ? trueValue : falseValue) + END;
 }
 
 string inParens(size_t value) {
+  std::stringstream ss;
+  ss << CYN "(" << value << ")" END;
+  return ss.str();
+}
+
+string inParens(string value) {
   std::stringstream ss;
   ss << CYN "(" << value << ")" END;
   return ss.str();

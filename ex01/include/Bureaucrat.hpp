@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 #include <string>
+#include "Form.hpp"
 
 using std::string;
 
@@ -33,6 +34,7 @@ class Bureaucrat {
   // Methods
   void increaseGrade(size_t amount);
   void decreaseGrade(size_t amount);
+  bool signForm(Form& form);
 
   // Exceptions
   class GradeTooHighException;
