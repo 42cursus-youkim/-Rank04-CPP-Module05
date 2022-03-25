@@ -32,13 +32,13 @@ size_t Bureaucrat::getGrade() const {
 }
 
 // Methods
-void Bureaucrat::increaseGrade(int amount) {
-  if (_grade < static_cast<size_t>(amount) + HIGHEST_GRADE)
+void Bureaucrat::increaseGrade(size_t amount) {
+  if (_grade < amount + HIGHEST_GRADE)
     throw Bureaucrat::GradeTooHighException();
   _grade -= amount;
 }
 
-void Bureaucrat::decreaseGrade(int amount) {
+void Bureaucrat::decreaseGrade(size_t amount) {
   if (_grade + amount > LOWEST_GRADE)
     throw Bureaucrat::GradeTooLowException();
   _grade += amount;
@@ -56,5 +56,5 @@ const char* Bureaucrat::GradeTooHighException::what() const throw() {
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-  return "Grade is too low";
+  return "Grade too low";
 }

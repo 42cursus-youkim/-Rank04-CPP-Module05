@@ -28,12 +28,28 @@ void testGradeAction(Bureaucrat& testPerson, gradeAction action) {
   }
 }
 
-void test(const string& header,
-          const string& name,
-          int initialGrade,
-          gradeAction action) {
+void testHeader(const string& header, size_t initialGrade) {
   cout << HYEL "[[Testing " << header << CYN "(" << initialGrade << ")" HYEL
        << "]]\n" END;
+}
+
+void testCreation(const string& header,
+                  const string& name,
+                  size_t initialGrade) {
+  testHeader(header, initialGrade);
+  try {
+    Bureaucrat testPerson(name + " person", initialGrade);
+    cout << testPerson << std::endl;
+  } catch (std::exception& e) {
+    cerr << RED "[Exception On Creation] " << e.what() << "\n" END;
+  }
+}
+
+void testGrade(const string& header,
+               const string& name,
+               size_t initialGrade,
+               gradeAction action) {
+  testHeader(header, initialGrade);
   try {
     Bureaucrat testPerson(name + " person", initialGrade);
     cout << testPerson << std::endl;
@@ -46,15 +62,15 @@ void test(const string& header,
 }
 
 int main() {
-  test("Grade low", "worst grade", 150, (gradeAction){NONE, 0});
-  test("Grade Decrease", "some", 120, (gradeAction){DECREASE, 15});
-  test("Grade too low", "wor?st grade", 200, (gradeAction){NONE, 0});
-  test("Grade Decrease too low", "bad grade", 120,
-       (gradeAction){DECREASE, 100});
+  testCreation("Grade low", "worst grade", 150);
+  testGrade("Grade Decrease", "some", 120, (gradeAction){DECREASE, 30});
+  testCreation("Grade too low", "wor?st grade", 200);
+  testGrade("Grade Decrease too low", "bad grade", 120,
+            (gradeAction){DECREASE, 100});
 
-  test("Grade high", "best grade", 1, (gradeAction){NONE, 0});
-  test("Grade Increase", "some", 30, (gradeAction){INCREASE, 15});
-  test("Grade too high", "b?est grade", -123, (gradeAction){NONE, 0});
-  test("Grade Increase too high", "good grade", 30,
-       (gradeAction){INCREASE, 100});
+  testCreation("Grade high", "best grade", 1);
+  testGrade("Grade Increase", "some", 30, (gradeAction){INCREASE, 29});
+  testCreation("Grade too high", "b?est grade", -123);
+  testGrade("Grade Increase too high", "good grade", 30,
+            (gradeAction){INCREASE, 100});
 }

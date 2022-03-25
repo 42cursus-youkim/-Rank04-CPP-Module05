@@ -31,8 +31,8 @@ class Bureaucrat {
   size_t getGrade() const;
 
   // Methods
-  void increaseGrade(int amount);
-  void decreaseGrade(int amount);
+  void increaseGrade(size_t amount);
+  void decreaseGrade(size_t amount);
 
   // Exceptions
   class GradeTooHighException;
