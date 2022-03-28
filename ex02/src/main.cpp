@@ -36,8 +36,11 @@ void printResponsibleOfficial(Bureaucrat& b) {
 }
 
 void printTestHeader(const string& what) {
-  cout << HCYN << string(18, '=') << BHYEL << " " << what << " " << HCYN
-       << string(18, '=') << "\n\n";
+  const int len = (80 - (what.length() + 4)) / 2;
+  if (len < 1)
+    throw std::length_error("printTestHeader: len < 1");
+  cout << HCYN << string(len, '=') << BHYEL << " " << what << " " << HCYN
+       << string(len, '=') << "\n\n";
 }
 
 void testAllForm(Bureaucrat& official, Form* formsPtr[3]) {
@@ -79,10 +82,22 @@ void testPeakBureaucracy() {
   }
 }
 
+void testOverWork() {
+  printTestHeader("canExecAllOfficial has passed away from overwork");
+  PresidentialPardonForm pardonForm("Arthur Dent");
+  RobotomyRequestForm robotomyForm("Ford Prefect");
+  ShrubberyCreationForm shrubberyForm("Trillian");
+  Form* formsPtr[3] = {&pardonForm, &robotomyForm, &shrubberyForm};
+
+  printResponsibleOfficial(canExecAllOfficial);
+  testAllForm(canExecAllOfficial, formsPtr);
+}
+
 int main() {
   srand(time(NULL) % 4587915786);
+  testOverWork();
   // testSimple();
-  testPeakBureaucracy();
+  // testPeakBureaucracy();
 
   // Try instantiating, it's abstract so you don't
   // Form form("trivialForm", 80, 100);

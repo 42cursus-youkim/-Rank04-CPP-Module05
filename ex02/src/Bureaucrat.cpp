@@ -51,9 +51,9 @@ void Bureaucrat::decreaseGrade(size_t amount) {
 bool Bureaucrat::signForm(Form& form) {
   try {
     form.beSigned(*this);
-    std::cout << BLU << getName() << GRN " signed " << CYN << form.getName();
+    std::cout << BBLU << getName() << GRN " signed " << CYN << form.getName();
   } catch (const std::exception& e) {
-    std::cout << HRED << getName() << " couldn't sign " CYN << form.getName()
+    std::cout << BMAG << getName() << " couldn't sign " CYN << form.getName()
               << HRED " because: " << e.what();
   }
   std::cout << "\n" END;
@@ -67,8 +67,8 @@ bool Bureaucrat::executeForm(const Form& form) {
          << "\n" END;
     return true;
   } catch (const std::exception& e) {
-    cout << BHRED << getName() << RED " couldn't execute " BCYN
-         << form.getName() << RED " because: " BHRED << e.what() << "\n" END;
+    cout << BMAG << getName() << RED " couldn't execute " BCYN << form.getName()
+         << RED " because: " BHRED << e.what() << "\n" END;
     return false;
   }
 }

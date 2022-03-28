@@ -5,6 +5,11 @@ CXXFLAGS := -g -Wall -Wextra -Werror -std=c++98 -Iinclude/
 SRC := $(wildcard src/*.cpp)
 OBJ := $(SRC:%.cpp=%.o)
 
+ifeq ($(OS),Windows_NT)
+	$(error "Sorry, Windows is not supported")
+endif
+
+
 .PHONY: run re clean
 
 $(NAME): $(OBJ)
