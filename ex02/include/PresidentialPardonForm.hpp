@@ -2,7 +2,7 @@
 #define __PRESIDENTIALPARDONFORM_H__
 
 #include "Form.hpp"
-class PresidentialPardonForm {
+class PresidentialPardonForm : public Form {
  private:
   enum Requirement { SIGN = 25, EXEC = 5 };
 
@@ -15,7 +15,7 @@ class PresidentialPardonForm {
   // Operators
   PresidentialPardonForm& operator=(const PresidentialPardonForm& assign);
 
-  // Overrided Virtual Methods
+  // Overrided Abstract Methods
   void formAction() const;
 };
 

@@ -8,6 +8,46 @@
 #include "util.hpp"
 using std::string;
 
+// Constructors & Destructor
+Form::Form(const string& name,
+           const string& target,
+           int execGrade,
+           int signGrade)
+    : _name(name),
+      _target(target),
+      _executionRequiredGrade(static_cast<int>(execGrade)),
+      _signRequiredGrade(static_cast<int>(signGrade)),
+      _isSigned(false) {
+  validateGradeInRange(signGrade);
+  validateGradeInRange(execGrade);
+}
+
+Form::Form(const Form& other)
+    : _name(other.getName()),
+      _target(other.getTarget()),
+      _executionRequiredGrade(other.getSignRequiredGrade()),
+      _signRequiredGrade(other.getExecutionRequiredGrade()),
+      _isSigned(other.getIsSigned()) {}
+
+Form::~Form() {}
+
+// Getters
+const string& Form::getName() const {
+  return _name;
+}
+const string& Form::getTarget() const {
+  return _target;
+}
+size_t Form::getSignRequiredGrade() const {
+  return _signRequiredGrade;
+}
+size_t Form::getExecutionRequiredGrade() const {
+  return _executionRequiredGrade;
+}
+bool Form::getIsSigned() const {
+  return _isSigned;
+}
+
 // Protected method
 void Form::validateGradeInRange(int grade) const {
   if (grade > Form::LOWEST_GRADE) {
@@ -17,42 +57,6 @@ void Form::validateGradeInRange(int grade) const {
     throw Form::GradeTooHighException();
 }
 
-// Constructors & Destructor
-Form::Form(const string& name, int execGrade, int signGrade)
-    : _name(name),
-      _executionRequiredGrade(static_cast<int>(execGrade)),
-      _signRequiredGrade(static_cast<int>(signGrade)),
-      _isSigned(false) {
-  validateGradeInRange(signGrade);
-  validateGradeInRange(execGrade);
-}
-
-Form::Form(const Form& other)
-    : _name(other._name),
-      _executionRequiredGrade(other._executionRequiredGrade),
-      _signRequiredGrade(other._signRequiredGrade),
-      _isSigned(other._isSigned) {}
-
-Form::~Form() {}
-
-// Getters
-const string& Form::getName() const {
-  return _name;
-}
-
-size_t Form::getSignRequiredGrade() const {
-  return _signRequiredGrade;
-}
-
-size_t Form::getExecutionRequiredGrade() const {
-  return _executionRequiredGrade;
-}
-
-bool Form::getIsSigned() const {
-  return _isSigned;
-}
-
-// Getters for Bureaucrat
 bool Form::canBeSignedBy(const Bureaucrat& bureaucrat) const {
   return (bureaucrat.getGrade() <= _signRequiredGrade);
 }

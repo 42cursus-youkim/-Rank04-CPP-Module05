@@ -3,7 +3,7 @@
 
 #include "Form.hpp"
 
-class ShrubberyCreationForm {
+class ShrubberyCreationForm : public Form {
  private:
   enum Requirement { SIGN = 145, EXEC = 137 };
 
@@ -15,8 +15,8 @@ class ShrubberyCreationForm {
   // Operators
   ShrubberyCreationForm& operator=(const ShrubberyCreationForm& assign);
 
-  // Overrided Virtual Methods
+  // Overrided Abstract Methods
   void formAction() const;
 };
 
-#endif  // __SHRUBBERYCREATIONFORM_H__class ShrubberyCreationForm {};
+#endif  // __SHRUBBERYCREATIONFORM_H__

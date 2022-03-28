@@ -17,27 +17,28 @@ class Form {
 
   // Disabled Constructor
   Form();
+  // Disabled Operators
+  Form& operator=(const Form& assign);
 
  protected:
   // Methods
   void validateGradeInRange(int grade) const;
+  bool canBeSignedBy(const Bureaucrat& bureaucrat) const;
+  bool canBeExecutedBy(const Bureaucrat& bureaucrat) const;
 
  public:
   enum FormGradeRange { HIGHEST_GRADE = 1, LOWEST_GRADE = 150 };
   // Constructors & Destructor
-  Form(const string& name, int execGrade, int signGrade);
+  Form(const string& name, const string& target, int execGrade, int signGrade);
   Form(const Form& other);
   virtual ~Form();
 
   // Getters
   const string& getName() const;
+  const string& getTarget() const;
   size_t getSignRequiredGrade() const;
   size_t getExecutionRequiredGrade() const;
   bool getIsSigned() const;
-
-  // Getters for Bureaucrat
-  bool canBeSignedBy(const Bureaucrat& bureaucrat) const;
-  bool canBeExecutedBy(const Bureaucrat& bureaucrat) const;
 
   // Methods
   void beSigned(const Bureaucrat& bureaucrat);

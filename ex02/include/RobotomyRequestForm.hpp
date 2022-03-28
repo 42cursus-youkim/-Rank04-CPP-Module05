@@ -3,7 +3,7 @@
 
 #include "Form.hpp"
 
-class RobotomyRequestForm {
+class RobotomyRequestForm : public Form {
  private:
   enum Requirement { SIGN = 72, EXEC = 45 };
 
@@ -15,7 +15,7 @@ class RobotomyRequestForm {
   // Operators
   RobotomyRequestForm& operator=(const RobotomyRequestForm& assign);
 
-  // Overrided Virtual Methods
+  // Overrided Abstract Methods
   void formAction() const;
 };
 
