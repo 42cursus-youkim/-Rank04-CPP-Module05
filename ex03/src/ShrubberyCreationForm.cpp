@@ -19,8 +19,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
            ShrubberyCreationForm::EXEC) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
+
 // Overrided Abstract Methods
-#include <cstdlib>
 void ShrubberyCreationForm::formAction() const {
   const string assetfile = "asset/shrubbery.txt";
   const string targetfile = Form::getTarget() + "_shrubbery";

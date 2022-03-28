@@ -1,35 +1,15 @@
 #include <cstdlib>
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "color.hpp"
-#include "util.hpp"
 
 using std::cerr;
 using std::cout;
 using std::string;
-
-// Haha, this is global and you can do nothing to prevent this
-Bureaucrat canExecAllOfficial("canExecAllOfficial", Form::HIGHEST_GRADE);
-Bureaucrat cantExecPardonOfficial("can'tExecPardonOfficial",
-                                  PresidentialPardonForm::EXEC + 10);
-Bureaucrat cantSignPardonOfficial("can'tSignPardonOfficial",
-                                  PresidentialPardonForm::SIGN + 10);
-Bureaucrat cantExecRobotomyOfficial("can'tExecRobotomyOfficial",
-                                    RobotomyRequestForm::EXEC + 10);
-Bureaucrat cantSignRobotomyOfficial("can'tSignRobotomyOfficial",
-                                    RobotomyRequestForm::SIGN + 10);
-Bureaucrat cantExecShrubberyOfficial("can'tExecShrubberyOfficial",
-                                     ShrubberyCreationForm::EXEC + 10);
-Bureaucrat cantSignShrubberyOfficial("can'tSignShrubberyOfficial",
-                                     ShrubberyCreationForm::SIGN + 5);
-Bureaucrat* officialPtr[7] = {
-    &canExecAllOfficial,       &cantExecPardonOfficial,
-    &cantSignPardonOfficial,   &cantExecRobotomyOfficial,
-    &cantSignRobotomyOfficial, &cantExecShrubberyOfficial,
-    &cantSignShrubberyOfficial};
 
 void printResponsibleOfficial(Bureaucrat& b) {
   cout << HYEL "[[Bureaucrat " BCYN << b << HYEL " is responsible]]\n" END;
@@ -53,54 +33,28 @@ void testAllForm(Bureaucrat& official, Form* formsPtr[3]) {
   cout << BYEL << string(80, '=') << "\n\n";
 }
 
-void testSimple() {
-  printTestHeader("One official to do everything");
-  for (int i = 0; i < 7; i++) {
-    // Hence tests are atomic
-    PresidentialPardonForm pardonForm("Arthur Dent");
-    RobotomyRequestForm robotomyForm("Ford Prefect");
-    ShrubberyCreationForm shrubberyForm("Trillian");
-    Form* formsPtr[3] = {&pardonForm, &robotomyForm, &shrubberyForm};
-
-    Bureaucrat& official = *officialPtr[i];
-    printResponsibleOfficial(official);
-    testAllForm(official, formsPtr);
-  }
+const string randomName() {
+  const string names[] = {"Arthur Dent", "Ford Prefect",   "Zaphod Beeblebrox",
+                          "Marvin",      "Slartibartfast", "Trillian"};
+  return names[rand() % 6];
 }
 
-void testPeakBureaucracy() {
-  PresidentialPardonForm pardonForm("Arthur Dent");
-  RobotomyRequestForm robotomyForm("Ford Prefect");
-  ShrubberyCreationForm shrubberyForm("Trillian");
-  Form* formsPtr[3] = {&pardonForm, &robotomyForm, &shrubberyForm};
+void testOverWork(Bureaucrat& official, Intern& intern) {
+  printTestHeader(official.getName() + " has passed away from overwork");
+  ;
+  Form* formsPtr[3];
+  for (int i = 0; i < 3; i++)
+    formsPtr[i] = intern.makeForm(g_formTypes[i], randomName());
 
-  printTestHeader("Peak Bureaucracy: Now in reverse!");
-  for (int i = 6; i >= 0; i--) {
-    Bureaucrat& official = *officialPtr[i];
-    printResponsibleOfficial(official);
-    testAllForm(official, formsPtr);
-  }
-}
-
-void testOverWork() {
-  printTestHeader("canExecAllOfficial has passed away from overwork");
-  PresidentialPardonForm pardonForm("Arthur Dent");
-  RobotomyRequestForm robotomyForm("Ford Prefect");
-  ShrubberyCreationForm shrubberyForm("Trillian");
-  Form* formsPtr[3] = {&pardonForm, &robotomyForm, &shrubberyForm};
-
-  printResponsibleOfficial(canExecAllOfficial);
-  testAllForm(canExecAllOfficial, formsPtr);
+  printResponsibleOfficial(official);
+  testAllForm(official, formsPtr);
 }
 
 int main() {
+  Intern someRandomIntern;
+  Bureaucrat canExecAllOfficial("canExecAllOfficial", Form::HIGHEST_GRADE);
+
   srand(time(NULL) % 4587915786);
-  testOverWork();
-  // testSimple();
-  // testPeakBureaucracy();
-
-  // Try instantiating, it's abstract so you don't
-  // Form form("trivialForm", 80, 100);
-
+  testOverWork(canExecAllOfficial, someRandomIntern);
   return 0;
 }

@@ -16,6 +16,7 @@ class PresidentialPardonForm : public Form {
 
   // Overrided Abstract Methods
   void formAction() const;
+  // create new PresidentialPardonForm
 };
 
 #endif  // __PRESIDENTIALPARDONFORM_H__
