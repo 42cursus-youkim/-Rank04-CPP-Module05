@@ -5,15 +5,15 @@
 
 class RobotomyRequestForm : public Form {
  private:
-  enum Requirement { SIGN = 72, EXEC = 45 };
+  // Disabled Operators
+  RobotomyRequestForm& operator=(const RobotomyRequestForm& assign);
 
  public:
+  enum Requirement { SIGN = 72, EXEC = 45 };
   // Constructors & Destructor
   RobotomyRequestForm(const string& target);
   RobotomyRequestForm(const RobotomyRequestForm& other);
   ~RobotomyRequestForm();
-  // Operators
-  RobotomyRequestForm& operator=(const RobotomyRequestForm& assign);
 
   // Overrided Abstract Methods
   void formAction() const;

@@ -63,13 +63,14 @@ bool Bureaucrat::signForm(Form& form) {
 bool Bureaucrat::executeForm(const Form& form) {
   try {
     form.execute(*this);
-    cout << HGRN << getName() << " executed " << form.getName();
+    cout << BHGRN << getName() << GRN " executed " BHCYN << form.getName()
+         << "\n" END;
+    return true;
   } catch (const std::exception& e) {
-    cout << BHRED << getName() << " couldn't execute " BCYN << form.getName()
-         << BHRED " because: " << e.what();
+    cout << BHRED << getName() << RED " couldn't execute " BCYN
+         << form.getName() << RED " because: " BHRED << e.what() << "\n" END;
+    return false;
   }
-  cout << "\n" END;
-  return form.getIsSigned();
 }
 
 // Overloaded << operator

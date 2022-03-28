@@ -20,23 +20,16 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-// Operators
-RobotomyRequestForm& RobotomyRequestForm::operator=(
-    const RobotomyRequestForm& assign) {
-  Form::operator=(assign);
-  return *this;
-}
-
 // Overrided Abstract Methods
 static bool randHalf() {
   return rand() % 2;
 }
 
 void RobotomyRequestForm::formAction() const {
-  if (randHalf())
-    cout << CYN << Form::getTarget()
-         << HGRN " has been robotomized successfully.\n";
-  else
-    cout << CYN << "robotomy for subject " << Form::getTarget()
-         << HRED "failed.\n";
+  cout << HYEL "Haha drill goes brrrrrrrrrrrrrrrrrr\n";
+  cout << CYN << "robotomy for subject " BCYN << Form::getTarget() << " ";
+  if (randHalf()) {
+    cout << HGRN "is successful.\n" END;
+  } else
+    cout << HRED "failed.\n";
 }

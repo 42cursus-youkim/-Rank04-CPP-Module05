@@ -19,12 +19,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-// Operators
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(
-    const ShrubberyCreationForm& assign) {
-  Form::operator=(assign);
-  return *this;
-}
-
 // Overrided Abstract Methods
-void ShrubberyCreationForm::formAction() const {}
+void ShrubberyCreationForm::formAction() const {
+  cout << "TODO: implement ShrubberyCreationForm::formAction\n";
+}

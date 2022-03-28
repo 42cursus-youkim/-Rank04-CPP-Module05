@@ -7,7 +7,7 @@ using std::cerr;
 using std::cout;
 using std::string;
 
-void printResponsibleBurger(Bureaucrat& b) {
+void printResponsibleOfficial(Bureaucrat& b) {
   cout << HYEL "[[Bureaucrat " BYEL << b << HYEL " is responsible]]\n" END;
 }
 
@@ -49,7 +49,7 @@ void testFormActions() {
     Form forms[] = {Form("trivialForm", 80, 100), Form("ImportantForm", 30, 50),
                     Form("advancedForm", 5, 10)};
     Bureaucrat bureaucrat = bureaucrats[i];
-    printResponsibleBurger(bureaucrat);
+    printResponsibleOfficial(bureaucrat);
     for (int j = 0; j < 3; j++)
       signForms(bureaucrat, forms[j]);
   }

@@ -75,7 +75,7 @@ void Form::beSigned(const Bureaucrat& bureaucrat) {
 void Form::execute(Bureaucrat const& executor) const {
   if (not _isSigned)
     throw Form::FormNotSignedException();
-  if (not canBeExecutedBy(executor))
+  else if (not canBeExecutedBy(executor))
     throw Form::GradeTooLowException();
   formAction();
 }

@@ -5,15 +5,15 @@
 
 class ShrubberyCreationForm : public Form {
  private:
-  enum Requirement { SIGN = 145, EXEC = 137 };
+  // Disabled Operators
+  ShrubberyCreationForm& operator=(const ShrubberyCreationForm& assign);
 
  public:
+  enum Requirement { SIGN = 145, EXEC = 137 };
   // Constructors & Destructor
   ShrubberyCreationForm(const string& target);
   ShrubberyCreationForm(const ShrubberyCreationForm& other);
   ~ShrubberyCreationForm();
-  // Operators
-  ShrubberyCreationForm& operator=(const ShrubberyCreationForm& assign);
 
   // Overrided Abstract Methods
   void formAction() const;

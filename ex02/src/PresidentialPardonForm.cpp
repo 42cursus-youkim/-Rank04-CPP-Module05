@@ -20,16 +20,9 @@ PresidentialPardonForm::PresidentialPardonForm(
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-// Operators
-PresidentialPardonForm& PresidentialPardonForm::operator=(
-    const PresidentialPardonForm& assign) {
-  Form::operator=(assign);
-  return *this;
-}
-
 // Overrided Abstract Methods
 void PresidentialPardonForm::formAction() const {
-  cout << CYN << Form::getTarget()
-       << HGRN " is hereby pardoned by the President " BBLU
+  cout << BCYN << Form::getTarget()
+       << GRN " is hereby pardoned by the Galactic President " BBLU
                "-*- Zaphod Beeblebrox -*-\n";
 }
