@@ -16,6 +16,8 @@ class Form {
 
   // Disabled Constructor
   Form();
+  // Disabled Operators
+  Form& operator=(const Form& assign);
 
  protected:
   // Methods
