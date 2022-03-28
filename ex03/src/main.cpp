@@ -5,6 +5,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "color.hpp"
+#include "util.hpp"
 
 using std::cerr;
 using std::cout;
@@ -95,8 +96,8 @@ void testOverWork() {
 int main() {
   srand(time(NULL) % 4587915786);
   testOverWork();
-  testSimple();
-  testPeakBureaucracy();
+  // testSimple();
+  // testPeakBureaucracy();
 
   // Try instantiating, it's abstract so you don't
   // Form form("trivialForm", 80, 100);
