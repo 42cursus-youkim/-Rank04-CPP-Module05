@@ -35,6 +35,7 @@ class Bureaucrat {
   void increaseGrade(size_t amount);
   void decreaseGrade(size_t amount);
   bool signForm(Form& form);
+  bool executeForm(const Form& form);
 
   // Exceptions
   class GradeTooHighException;

@@ -10,6 +10,7 @@ class Bureaucrat;
 class Form {
  private:
   const string _name;
+  const string _target;
   const size_t _executionRequiredGrade;
   const size_t _signRequiredGrade;
   bool _isSigned;
@@ -34,12 +35,19 @@ class Form {
   size_t getExecutionRequiredGrade() const;
   bool getIsSigned() const;
 
+  // Getters for Bureaucrat
+  bool canBeSignedBy(const Bureaucrat& bureaucrat) const;
+  bool canBeExecutedBy(const Bureaucrat& bureaucrat) const;
+
   // Methods
   void beSigned(const Bureaucrat& bureaucrat);
+  void execute(Bureaucrat const& executor) const;
+  virtual void formAction() const = 0;
 
   // Exceptions
   class GradeTooHighException;
   class GradeTooLowException;
+  class FormNotSignedException;
 };
 
 class Form::GradeTooHighException : public std::exception {
@@ -48,6 +56,11 @@ class Form::GradeTooHighException : public std::exception {
 };
 
 class Form::GradeTooLowException : public std::exception {
+ public:
+  virtual const char* what() const throw();
+};
+
+class Form::FormNotSignedException : public std::exception {
  public:
   virtual const char* what() const throw();
 };

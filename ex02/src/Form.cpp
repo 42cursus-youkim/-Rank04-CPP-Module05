@@ -52,11 +52,28 @@ bool Form::getIsSigned() const {
   return _isSigned;
 }
 
+// Getters for Bureaucrat
+bool Form::canBeSignedBy(const Bureaucrat& bureaucrat) const {
+  return (bureaucrat.getGrade() <= _signRequiredGrade);
+}
+
+bool Form::canBeExecutedBy(const Bureaucrat& bureaucrat) const {
+  return (bureaucrat.getGrade() <= _executionRequiredGrade);
+}
+
 // Methods
 void Form::beSigned(const Bureaucrat& bureaucrat) {
-  if (bureaucrat.getGrade() > _signRequiredGrade)
+  if (not canBeSignedBy(bureaucrat))
     throw Form::GradeTooLowException();
   _isSigned = true;
+}
+
+void Form::execute(Bureaucrat const& executor) const {
+  if (not _isSigned)
+    throw Form::FormNotSignedException();
+  if (not canBeExecutedBy(executor))
+    throw Form::GradeTooLowException();
+  formAction();
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& f) {
@@ -74,4 +91,8 @@ const char* Form::GradeTooHighException::what() const throw() {
 
 const char* Form::GradeTooLowException::what() const throw() {
   return "Grade too low";
+}
+
+const char* Form::FormNotSignedException::what() const throw() {
+  return "Unsigned forms cannot be executed";
 }
