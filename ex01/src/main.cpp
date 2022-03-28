@@ -40,8 +40,7 @@ void testFailedForm() {
   cout << "\n";
 }
 
-int main() {
-  testFailedForm();
+void testFormActions() {
   Bureaucrat bureaucrats[] = {Bureaucrat("lowRANK", 100),
                               Bureaucrat("midRANK", 50),
                               Bureaucrat("highRANK", 1)};
@@ -54,4 +53,9 @@ int main() {
     for (int j = 0; j < 3; j++)
       signForms(bureaucrat, forms[j]);
   }
+}
+
+int main() {
+  testFailedForm();
+  testFormActions();
 }
