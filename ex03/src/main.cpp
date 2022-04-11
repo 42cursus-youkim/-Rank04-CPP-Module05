@@ -48,6 +48,8 @@ void testOverWork(Bureaucrat& official, Intern& intern) {
 
   printResponsibleOfficial(official);
   testAllForm(official, formsPtr);
+  for (int i = 0; i < 3; i++)
+    delete formsPtr[i];
 }
 
 int main() {
