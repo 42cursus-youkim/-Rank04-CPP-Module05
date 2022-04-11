@@ -41,7 +41,7 @@ const string randomName() {
 
 void testOverWork(Bureaucrat& official, Intern& intern) {
   printTestHeader(official.getName() + " has passed away from overwork");
-  ;
+
   Form* formsPtr[3];
   for (int i = 0; i < 3; i++)
     formsPtr[i] = intern.makeForm(g_formTypes[i], randomName());
@@ -52,11 +52,19 @@ void testOverWork(Bureaucrat& official, Intern& intern) {
     delete formsPtr[i];
 }
 
+void testWrongForm(Intern& intern) {
+  printTestHeader("What is this, a form for ants?");
+
+  if (intern.makeForm("WrongForm", randomName()) != NULL)
+    throw std::exception();
+}
+
 int main() {
   Intern someRandomIntern;
   Bureaucrat canExecAllOfficial("canExecAllOfficial", Form::HIGHEST_GRADE);
 
   srand(time(NULL) % 4587915786);
   testOverWork(canExecAllOfficial, someRandomIntern);
+  testWrongForm(someRandomIntern);
   return 0;
 }

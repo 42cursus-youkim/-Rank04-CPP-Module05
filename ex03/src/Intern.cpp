@@ -1,7 +1,11 @@
 #include "Intern.hpp"
+#include <iostream>
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "color.hpp"
+
+using std::cout;
 
 Intern::Intern() {}
 Intern::~Intern() {}
@@ -27,10 +31,6 @@ Form* Intern::makeForm(const string& formType, const string& target) const {
   for (int i = 0; i < 3; i++)
     if (g_formTypes[i] == formType)
       return (this->*factory[i])(target);
-  throw FormNotFoundException();
-}
-
-// Exceptions
-const char* Intern::FormNotFoundException::what() const throw() {
-  return "No such form";
+  cout << RED "Intern says there's no such form!\n" END;
+  return NULL;
 }
