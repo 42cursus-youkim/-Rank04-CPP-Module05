@@ -13,17 +13,17 @@ using std::string;
 // Haha, this is global and you can do nothing to prevent this
 Bureaucrat canExecAllOfficial("canExecAllOfficial", Form::HIGHEST_GRADE);
 Bureaucrat cantExecPardonOfficial("can'tExecPardonOfficial",
-                                  PresidentialPardonForm::EXEC + 10);
+                                  PresidentialPardonForm::EXEC + 1);
 Bureaucrat cantSignPardonOfficial("can'tSignPardonOfficial",
-                                  PresidentialPardonForm::SIGN + 10);
+                                  PresidentialPardonForm::SIGN + 1);
 Bureaucrat cantExecRobotomyOfficial("can'tExecRobotomyOfficial",
-                                    RobotomyRequestForm::EXEC + 10);
+                                    RobotomyRequestForm::EXEC + 1);
 Bureaucrat cantSignRobotomyOfficial("can'tSignRobotomyOfficial",
-                                    RobotomyRequestForm::SIGN + 10);
+                                    RobotomyRequestForm::SIGN + 1);
 Bureaucrat cantExecShrubberyOfficial("can'tExecShrubberyOfficial",
-                                     ShrubberyCreationForm::EXEC + 10);
+                                     ShrubberyCreationForm::EXEC + 1);
 Bureaucrat cantSignShrubberyOfficial("can'tSignShrubberyOfficial",
-                                     ShrubberyCreationForm::SIGN + 5);
+                                     ShrubberyCreationForm::SIGN + 1);
 Bureaucrat* officialPtr[7] = {
     &canExecAllOfficial,       &cantExecPardonOfficial,
     &cantSignPardonOfficial,   &cantExecRobotomyOfficial,
@@ -71,7 +71,7 @@ void testPeakBureaucracy() {
   PresidentialPardonForm pardonForm("Arthur Dent");
   RobotomyRequestForm robotomyForm("Ford Prefect");
   ShrubberyCreationForm shrubberyForm("Trillian");
-  Form* formsPtr[3] = {&pardonForm, &robotomyForm, &shrubberyForm};
+  Form* formsPtr[3] = {&shrubberyForm, &robotomyForm, &pardonForm};
 
   printTestHeader("Peak Bureaucracy: Now in reverse!");
   for (int i = 6; i >= 0; i--) {
