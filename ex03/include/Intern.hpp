@@ -16,6 +16,11 @@ class Intern {
   // Disabled Operators
   Intern& operator=(const Intern& assign);
 
+  // Methods
+  Form* createShrubberyCreationForm(const string& target) const;
+  Form* createRobotomyRequestForm(const string& target) const;
+  Form* createPresidentialPardonForm(const string& target) const;
+
  public:
   // Constructors & Destructor
   Intern();
