@@ -24,5 +24,5 @@ PresidentialPardonForm::~PresidentialPardonForm() {}
 void PresidentialPardonForm::formAction() const {
   cout << BCYN << Form::getTarget()
        << GRN " is hereby pardoned by the Galactic President " BBLU
-               "-*- Zaphod Beeblebrox -*-\n";
+              "-*- Zaphod Beeblebrox -*-\n";
 }

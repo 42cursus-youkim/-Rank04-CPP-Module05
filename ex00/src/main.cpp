@@ -61,16 +61,17 @@ void testGrade(const string& header,
 }
 
 int main() {
+  const gradeAction decreaseAction = {DECREASE, 30};
+  const gradeAction increaseAction = {INCREASE, 30};
+
   testCreation("Grade low", "worst grade", 150);
-  testGrade("Grade Decrease", "some", 120, (gradeAction){DECREASE, 30});
+  testGrade("Grade Decrease", "some", 120, decreaseAction);
   testCreation("Grade too low", "wor?st grade", 200);
-  testGrade("Grade Decrease too low", "bad grade", 120,
-            (gradeAction){DECREASE, 30});
+  testGrade("Grade Decrease too low", "bad grade", 120, decreaseAction);
 
   testCreation("Grade high", "best grade", 1);
-  testGrade("Grade Increase", "some", 30, (gradeAction){INCREASE, 29});
+  testGrade("Grade Increase", "some", 31, increaseAction);
   testCreation("Grade too high", "b?est grade", 0);
   testCreation("Grade too high", "b???est grade", -123);
-  testGrade("Grade Increase too high", "good grade", 30,
-            (gradeAction){INCREASE, 30});
+  testGrade("Grade Increase too high", "good grade", 30, increaseAction);
 }
