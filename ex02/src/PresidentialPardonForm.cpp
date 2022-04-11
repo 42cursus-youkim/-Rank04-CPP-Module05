@@ -8,15 +8,15 @@ using std::cout;
 PresidentialPardonForm::PresidentialPardonForm(const string& target)
     : Form("Presidential Pardon Form",
            target,
-           PresidentialPardonForm::SIGN,
-           PresidentialPardonForm::EXEC) {}
+           PresidentialPardonForm::EXEC,
+           PresidentialPardonForm::SIGN) {}
 
 PresidentialPardonForm::PresidentialPardonForm(
     const PresidentialPardonForm& other)
     : Form(other.getName(),
            other.getTarget(),
-           PresidentialPardonForm::SIGN,
-           PresidentialPardonForm::EXEC) {}
+           PresidentialPardonForm::EXEC,
+           PresidentialPardonForm::SIGN) {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 

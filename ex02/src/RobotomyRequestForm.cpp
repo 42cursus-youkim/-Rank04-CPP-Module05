@@ -9,14 +9,14 @@ using std::cout;
 RobotomyRequestForm::RobotomyRequestForm(const string& target)
     : Form("RobotomyRequestForm",
            target,
-           RobotomyRequestForm::SIGN,
-           RobotomyRequestForm::EXEC) {}
+           RobotomyRequestForm::EXEC,
+           RobotomyRequestForm::SIGN) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
     : Form(other.getName(),
            other.getTarget(),
-           RobotomyRequestForm::SIGN,
-           RobotomyRequestForm::EXEC) {}
+           RobotomyRequestForm::EXEC,
+           RobotomyRequestForm::SIGN) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 

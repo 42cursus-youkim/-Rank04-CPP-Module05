@@ -9,14 +9,14 @@ using std::cout;
 ShrubberyCreationForm::ShrubberyCreationForm(const string& target)
     : Form("ShrubberyCreationForm",
            target,
-           ShrubberyCreationForm::SIGN,
-           ShrubberyCreationForm::EXEC) {}
+           ShrubberyCreationForm::EXEC,
+           ShrubberyCreationForm::SIGN) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
     : Form(other.getName(),
            other.getTarget(),
-           ShrubberyCreationForm::SIGN,
-           ShrubberyCreationForm::EXEC) {}
+           ShrubberyCreationForm::EXEC,
+           ShrubberyCreationForm::SIGN) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
